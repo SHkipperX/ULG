@@ -12,8 +12,11 @@ class Circle:
     The default methods are get_area.
     """
     def __new__(cls, radius):
-        if False in (isinstance(radius, (int, float)), radius > 0):
-            raise ValueError("The radius cannot be a string or less than 0!")
+        if not isinstance(radius, (int, float)):
+            raise TypeError("The radius must be a int or float!")
+        
+        if not (radius > 0):
+            raise ValueError("The radius must be greater than 0!")
         
         return super(Circle, cls).__new__(cls)
     def __init__(

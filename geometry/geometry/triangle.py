@@ -15,8 +15,12 @@ class Triangle:
         if len(args) != 3:
             raise ValueError("The number of sides cannot exceed 3!")
 
-        if False in [(isinstance(i, (int, float)) & (i > 0)) for i in args]:
-            raise ValueError("The sides cannot be less than 0 or be a string!")
+        if False in [isinstance(i, (int, float)) for i in args]:
+            raise TypeError("The sides cannot  or be a string!")
+        
+        if False in [i > 0 for i in args]:
+            raise ValueError("The sides cannot be less than 0!")
+        
         a, b, c = args
         if not ((a + b > c) & (a + c > b) & (b + c > a)):
             raise Exception(f"Two sides cannot be less than a third! {args}")
