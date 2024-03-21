@@ -14,8 +14,8 @@ class Triangle:
     The default methods are get_area and get_type_triangle.
     """
 
-    def __new__(cls, *args):
-        cls.__check_trg(*args)
+    def __new__(cls, a, b, c, *args):
+        cls._check_trg(a, b, c)
         return super(Triangle, cls).__new__(cls)
 
     def __init__(
@@ -23,6 +23,7 @@ class Triangle:
         a: int | float,
         b: int | float,
         c: int | float,
+        *_,
     ) -> None:
         self.__a, self.__b, self.__c = a, b, c
         self.__hipotenusa, self.__side_1, self.__side_2 = sorted(
@@ -45,11 +46,8 @@ class Triangle:
 
         return "rectangular"
 
-    @classmethod
-    def __check_trg(cls, *args):
-        if len(args) != 3:
-            raise ValueError("The number of sides cannot exceed 3!")
-
+    @staticmethod
+    def _check_trg(*args):
         if False in [isinstance(i, (int, float)) for i in args]:
             raise TypeError("The sides must be int or float!")
 

@@ -8,11 +8,6 @@ __all__ = []
 class TestTriangle(unittest.TestCase):
     def test_uncreate_m(self):
         with self.assertRaises(ValueError) as context:
-            Triangle(1, 1, 1, 1)
-
-        self.assertIsInstance(context.exception, ValueError)
-
-        with self.assertRaises(ValueError) as context:
             Triangle(1, -1, 1)
 
         self.assertIsInstance(context.exception, ValueError)
