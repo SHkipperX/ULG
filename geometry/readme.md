@@ -12,7 +12,7 @@
     > 12.566370614359172
 
     print(triangle.get_area)
-    print(triangle)
+    print(triangle.get_type_triangle)
     > 1.7623563771269384
     > obtuse angled
 
