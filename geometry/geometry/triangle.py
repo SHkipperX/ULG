@@ -15,7 +15,7 @@ class Triangle:
     """
 
     def __new__(cls, *args):
-        cls.check_trg(*args)
+        cls.__check_trg(*args)
         return super(Triangle, cls).__new__(cls)
 
     def __init__(
@@ -46,7 +46,7 @@ class Triangle:
         return "rectangular"
 
     @classmethod
-    def check_trg(cls, *args):
+    def __check_trg(cls, *args):
         if len(args) != 3:
             raise ValueError("The number of sides cannot exceed 3!")
 
@@ -59,46 +59,16 @@ class Triangle:
         a, b, c = args
         if not ((a + b > c) & (a + c > b) & (b + c > a)):
             raise Exception(f"Two sides cannot be less than a third! {args}")
-    
-    def sorted_sides(self):
-        self.__hipotenusa, self.__side_1, self.__side_2 = sorted(
-            [self.__a, self.__b, self.__c],
-            reverse=True,
-        )
 
-    def set_a(self, value):
-        try:
-            self.check_trg(value, self.__b, self.__c)
-            self.__a = value
-            self.sorted_sides()
-        except Exception as _:
-            print(_)
-
-    def get_a(self):
+    def get_a(self) -> int | float:
         return self.__a
 
-    def set_b(self, value):
-        try:
-            self.check_trg(self.__a, value, self.__c)
-            self.__b = value
-            self.sorted_sides()
-        except Exception as _:
-            print(_)
-
-    def get_b(self):
+    def get_b(self) -> int | float:
         return self.__b
 
-    def set_c(self, value):
-        try:
-            self.check_trg(self.__a, self.__b, value)
-            self.__c = value
-            self.sorted_sides()
-        except Exception as _:
-            print(_)
-
-    def get_c(self):
+    def get_c(self) -> int | float:
         return self.__c
 
-    a = property(get_a, set_a)
-    b = property(get_b, set_b)
-    c = property(get_c, set_c)
+    a = property(get_a)
+    b = property(get_b)
+    c = property(get_c)
