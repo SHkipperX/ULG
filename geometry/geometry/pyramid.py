@@ -30,7 +30,7 @@ class Pyramid(Triangle):
         if isinstance(value, (int, float)):
             self.__h = value
             return
-        print("The sides must be int or float!")
+        raise TypeError("The h must be int or float!")
 
     @property
     def size_v(self) -> float:

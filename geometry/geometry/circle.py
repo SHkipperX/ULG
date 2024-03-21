@@ -1,4 +1,5 @@
 from math import pi, pow
+import re
 
 __all__ = [
     "Circle",
@@ -25,8 +26,21 @@ class Circle:
         self,
         radius: int | float,
     ) -> None:
-        self.radius = radius
+        self.__radius = radius
 
     @property
     def get_area(self) -> float:
-        return pi * pow(self.radius, 2)
+        return pi * pow(self.__radius, 2)
+
+    def get_r(self) -> int | float:
+        return self.__radius
+
+    def set_r(self, value: int | float) -> None:
+        if isinstance(value, (int, float)):
+            if value > 0:
+                self.__radius = value
+                return
+            raise ValueError("The radius must be greater than 0!")
+        raise TypeError("The radius must be a int or float!")
+
+    r = property(get_r, set_r)
