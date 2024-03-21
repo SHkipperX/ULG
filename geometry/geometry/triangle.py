@@ -16,7 +16,7 @@ class Triangle:
             raise ValueError("The number of sides cannot exceed 3!")
 
         if False in [isinstance(i, (int, float)) for i in args]:
-            raise TypeError("The sides cannot  or be a string!")
+            raise TypeError("The sides must be int or float!")
         
         if False in [i > 0 for i in args]:
             raise ValueError("The sides cannot be less than 0!")
