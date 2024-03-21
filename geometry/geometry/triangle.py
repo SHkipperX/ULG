@@ -70,6 +70,7 @@ class Triangle:
         try:
             self.check_trg(value, self.__b, self.__c)
             self.__a = value
+            self.sorted_sides()
         except Exception as _:
             print(_)
 
@@ -80,6 +81,7 @@ class Triangle:
         try:
             self.check_trg(self.__a, value, self.__c)
             self.__b = value
+            self.sorted_sides()
         except Exception as _:
             print(_)
 
@@ -90,6 +92,7 @@ class Triangle:
         try:
             self.check_trg(self.__a, self.__b, value)
             self.__c = value
+            self.sorted_sides()
         except Exception as _:
             print(_)
 
