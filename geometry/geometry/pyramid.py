@@ -10,6 +10,7 @@ class Pyramid(Triangle):
     Pyramid object:
     metods: size_v, get_h, set_h
     """
+
     def __new__(cls, *args):
         *_, h = args
         if not isinstance(h, (int, float)):
@@ -28,6 +29,7 @@ class Pyramid(Triangle):
     def h_set(self, value) -> int | float:
         if isinstance(value, (int, float)):
             self.__h = value
+            return
         print("The sides must be int or float!")
 
     @property

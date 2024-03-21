@@ -28,8 +28,8 @@
         
         @property
         def V(self) -> float:
-            return (2/3) * self.get_area * self.h
+            return (1/3) * self.get_area * self.h
 
         a = Conus(2, 3)
         print(a.V)    
-    > 25.132741228718345
+    > 12.566370614359172
