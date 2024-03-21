@@ -1,5 +1,4 @@
 from math import pi, pow
-import re
 
 __all__ = [
     "Circle",
