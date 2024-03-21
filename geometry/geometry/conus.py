@@ -1,3 +1,4 @@
+from re import S
 from geometry import Circle
 
 __all__ = [
@@ -9,24 +10,28 @@ class Conus(Circle):
     """Conus"""
 
     def __new__(cls, radius, h):
-        instance = super(Conus, cls).__new__(cls, radius)
-        return instance
+        if not isinstance(h, (int, float)):
+            raise TypeError("The height must be int or float!")
+        if not (h > 0):
+            raise ValueError("The value must be greater than 0!")
+        return super(Conus, cls).__new__(cls, radius)
 
     def __init__(self, radius: int | float, h: int | float) -> None:
-        super().__init__(radius)
+        super(Conus, self).__init__(radius)
         self.__h = h
 
     @property
     def size_v(self) -> float:
         return (1 / 3) * self.get_area * self.h
 
-    def h_get(self) -> int | float:
+    @property
+    def h(self) -> int | float:
         return self.__h
 
-    def h_set(self, value) -> int | float:
-        if isinstance(value, (int, float)):
-            self.__h = value
-            return
-        print("The sides must be int or float!")
-
-    h = property(h_get, h_set)
+    @h.setter
+    def h(self, value: int | float) -> None:
+        if not isinstance(value, (int, float)):
+            raise TypeError("The height must be int or float!")
+        if not (value > 0):
+            raise ValueError("The height must be greater than 0!")
+        self.__h = value

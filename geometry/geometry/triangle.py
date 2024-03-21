@@ -1,6 +1,4 @@
 from math import sqrt, pow
-from tabnanny import check
-from typing import Any
 
 __all__ = [
     "Triangle",
@@ -47,7 +45,7 @@ class Triangle:
         return "rectangular"
 
     @staticmethod
-    def _check_trg(*args):
+    def _check_trg(*args: tuple[int | float]) -> None:
         if False in [isinstance(i, (int, float)) for i in args]:
             raise TypeError("The sides must be int or float!")
 
@@ -58,15 +56,14 @@ class Triangle:
         if not ((a + b > c) & (a + c > b) & (b + c > a)):
             raise Exception(f"Two sides cannot be less than a third! {args}")
 
-    def get_a(self) -> int | float:
+    @property
+    def a(self) -> int | float:
         return self.__a
 
-    def get_b(self) -> int | float:
+    @property
+    def b(self) -> int | float:
         return self.__b
 
-    def get_c(self) -> int | float:
+    @property
+    def c(self) -> int | float:
         return self.__c
-
-    a = property(get_a)
-    b = property(get_b)
-    c = property(get_c)

@@ -15,11 +15,9 @@ class Circle:
 
     def __new__(cls, radius):
         if not isinstance(radius, (int, float)):
-            raise TypeError("The radius must be a int or float!")
-
+            raise TypeError("The radius must be int or float!")
         if not (radius > 0):
-            raise ValueError("The radius must be greater than 0!")
-
+            raise ValueError("The radius cannot be less than 0!")
         return super(Circle, cls).__new__(cls)
 
     def __init__(
@@ -32,15 +30,14 @@ class Circle:
     def get_area(self) -> float:
         return pi * pow(self.__radius, 2)
 
-    def get_r(self) -> int | float:
+    @property
+    def r(self) -> int | float:
         return self.__radius
 
-    def set_r(self, value: int | float) -> None:
-        if isinstance(value, (int, float)):
-            if value > 0:
-                self.__radius = value
-                return
-            raise ValueError("The radius must be greater than 0!")
-        raise TypeError("The radius must be a int or float!")
-
-    r = property(get_r, set_r)
+    @r.setter
+    def r(self, value: int | float) -> None:
+        if not isinstance(value, (int, float)):
+            raise TypeError("The radius must be int or float!")
+        if not (value > 0):
+            raise ValueError("The radius cannot be less than 0!")
+        self.__radius = value
