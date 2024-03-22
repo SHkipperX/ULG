@@ -55,8 +55,7 @@ class Triangle:
 
         return "rectangular"
 
-    classmethod
-
+    @staticmethod
     def _check_trg(*args) -> None:
         if False in [isinstance(i, (int, float)) for i in args]:
             raise TypeError("The sides must be int or float!")
@@ -64,7 +63,7 @@ class Triangle:
         if False in [i > 0 for i in args]:
             raise ValueError("The sides cannot be less than 0!")
 
-        a, b, c = args
+        a, b, c, *_ = args
         if not ((a + b > c) & (a + c > b) & (b + c > a)):
             raise Exception(f"Two sides cannot be less than a third! {args}")
 
