@@ -16,26 +16,37 @@ class Conus(Circle):
             raise ValueError("The value must be greater than 0!")
         return super(Conus, cls).__new__(cls, *args)
 
-    def __init__(self, radius: int | float, h: int | float) -> None:
+    def __init__(self, radius: int | float, height: int | float) -> None:
         super(Conus, self).__init__(radius)
-        self.__heigth = h
-
-    def __str__(self) -> str:
-        r = super().__str__()
-        return f"{r} {self.__heigth=}"
+        self.__heigth = height
 
     @property
     def size_v(self) -> float:
-        return (1 / 3) * self.get_area * self.h
+        """
+        returns the volume of the cone
+        """
+        return (1 / 3) * self.get_area * self.height
 
     @property
-    def h(self) -> int | float:
+    def height(self) -> int | float:
+        """
+        returns the height of the cone
+        """
         return self.__heigth
 
-    @h.setter
-    def h(self, value: int | float) -> None:
+    @height.setter
+    def height(self, value: int | float) -> None:
         if not isinstance(value, (int, float)):
             raise TypeError("The height must be int or float!")
         if not (value > 0):
             raise ValueError("The height must be greater than 0!")
         self.__heigth = value
+
+    def __str__(self) -> str:
+        radius = super().__str__()
+        return f"{radius} {self.__heigth=}"
+
+    def __repr__(self) -> str:
+        cre_repr = super().__repr__()
+        edit = cre_repr.replace(")", f", {self.__heigth!r}")
+        return edit

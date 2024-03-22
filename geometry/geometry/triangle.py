@@ -92,4 +92,8 @@ class Triangle:
         return f"{self.__hipotenusa=} {self.__side_1=} {self.__side_2=}"
 
     def __repr__(self) -> str:
-        return f"{self.__class__.__name__}({self.__hipotenusa!r}, {self.__side_1!r}, {self.__side_2!r})"
+        return (
+            f"{self.__class__.__name__}"
+            f"({self.__hipotenusa!r}, "
+            f"{self.__side_1!r}, {self.__side_2!r})"
+        )
