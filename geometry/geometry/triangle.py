@@ -57,10 +57,10 @@ class Triangle:
 
     @staticmethod
     def _check_trg(*args) -> None:
-        if False in [isinstance(i, (int, float)) for i in args]:
+        if False in (isinstance(i, (int, float)) for i in args):
             raise TypeError("The sides must be int or float!")
 
-        if False in [i > 0 for i in args]:
+        if False in (i > 0 for i in args):
             raise ValueError("The sides cannot be less than 0!")
 
         a, b, c, *_ = args
