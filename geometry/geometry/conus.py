@@ -18,7 +18,11 @@ class Conus(Circle):
 
     def __init__(self, radius: int | float, h: int | float) -> None:
         super(Conus, self).__init__(radius)
-        self.__h = h
+        self.__heigth = h
+
+    def __str__(self) -> str:
+        r = super().__str__()
+        return f"{r} {self.__heigth=}"
 
     @property
     def size_v(self) -> float:
@@ -26,7 +30,7 @@ class Conus(Circle):
 
     @property
     def h(self) -> int | float:
-        return self.__h
+        return self.__heigth
 
     @h.setter
     def h(self, value: int | float) -> None:
@@ -34,4 +38,4 @@ class Conus(Circle):
             raise TypeError("The height must be int or float!")
         if not (value > 0):
             raise ValueError("The height must be greater than 0!")
-        self.__h = value
+        self.__heigth = value

@@ -26,6 +26,9 @@ class Circle:
     ) -> None:
         self.__radius = radius
 
+    def __str__(self) -> str:
+        return f"{self.__radius=}"
+
     @property
     def get_area(self) -> float:
         return pi * pow(self.__radius, 2)

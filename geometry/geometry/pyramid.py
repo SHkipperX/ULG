@@ -29,11 +29,15 @@ class Pyramid(Triangle):
         h: int | float,
     ) -> None:
         super(Pyramid, self).__init__(a, b, c)
-        self.__h = h
+        self.__heigth = h
+
+    def __str__(self) -> str:
+        sides = super().__str__()
+        return f"{sides} {self.__heigth=}"
 
     @property
     def h(self) -> int | float:
-        return self.__h
+        return self.__heigth
 
     @h.setter
     def h(self, value: int | float) -> None:
@@ -41,8 +45,8 @@ class Pyramid(Triangle):
             raise TypeError("The height must be int or float!")
         if not (value > 0):
             raise ValueError("The height cannot be less than 0!")
-        self.__h = value
+        self.__heigth = value
 
     @property
     def size_v(self) -> float:
-        return (self.get_area * self.__h) / 3
+        return (self.get_area * self.__heigth) / 3

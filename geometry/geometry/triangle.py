@@ -30,6 +30,9 @@ class Triangle:
             reverse=True,
         )
 
+    def __str__(self) -> str:
+        return f"{self.__hipotenusa=} {self.__side_1=} {self.__side_2=}"
+
     @property
     def get_area(self) -> float:
         p = (self.__a + self.__b + self.__c) / 2
