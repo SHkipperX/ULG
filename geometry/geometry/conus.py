@@ -1,4 +1,3 @@
-from re import S
 from geometry import Circle
 
 __all__ = [
