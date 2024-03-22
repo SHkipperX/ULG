@@ -13,6 +13,10 @@ class Triangle:
     """
 
     def __new__(cls, *args):
+        if len(args) < 3:
+            raise Exception(
+                f"lenght {args=} must be greater (if u inheritance) than or equal to 3"
+            )
         a, b, c, *_ = args
         cls._check_trg(a, b, c)
         return super(Triangle, cls).__new__(cls)
@@ -22,24 +26,27 @@ class Triangle:
         a: int | float,
         b: int | float,
         c: int | float,
-        *_,
     ) -> None:
-        self.__a, self.__b, self.__c = a, b, c
         self.__hipotenusa, self.__side_1, self.__side_2 = sorted(
             [a, b, c],
             reverse=True,
         )
 
-    def __str__(self) -> str:
-        return f"{self.__hipotenusa=} {self.__side_1=} {self.__side_2=}"
-
     @property
     def get_area(self) -> float:
-        p = (self.__a + self.__b + self.__c) / 2
-        return sqrt(p * (p - self.__a) * (p - self.__b) * (p - self.__c))
+        """
+        returns the area of the base
+        """
+        p = (self.__hipotenusa + self.__side_1 + self.__side_2) / 2
+        return sqrt(
+            p * (p - self.__hipotenusa) * (p - self.__side_1) * (p - self.__side_2)
+        )
 
     @property
     def get_type_triangle(self) -> str:
+        """
+        returns the type of the base triangle
+        """
         if pow(self.__side_1, 2) + pow(self.__side_2, 2) < pow(self.__hipotenusa, 2):
             return "obtuse angled"
 
@@ -48,8 +55,9 @@ class Triangle:
 
         return "rectangular"
 
-    @staticmethod
-    def _check_trg(*args: tuple[int | float]) -> None:
+    classmethod
+
+    def _check_trg(*args) -> None:
         if False in [isinstance(i, (int, float)) for i in args]:
             raise TypeError("The sides must be int or float!")
 
@@ -61,13 +69,28 @@ class Triangle:
             raise Exception(f"Two sides cannot be less than a third! {args}")
 
     @property
-    def a(self) -> int | float:
-        return self.__a
+    def hipotenusa(self) -> int | float:
+        """
+        returns the hypotenuse of the base
+        """
+        return self.__hipotenusa
 
     @property
-    def b(self) -> int | float:
-        return self.__b
+    def side_1(self) -> int | float:
+        """
+        returns the middle side
+        """
+        return self.__side_1
 
     @property
-    def c(self) -> int | float:
-        return self.__c
+    def side_2(self) -> int | float:
+        """
+        returns the smallest side
+        """
+        return self.__side_2
+
+    def __str__(self) -> str:
+        return f"{self.__hipotenusa=} {self.__side_1=} {self.__side_2=}"
+
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}({self.__hipotenusa!r}, {self.__side_1!r}, {self.__side_2!r})"
