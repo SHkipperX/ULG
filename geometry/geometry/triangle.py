@@ -12,7 +12,8 @@ class Triangle:
     The default methods are get_area and get_type_triangle.
     """
 
-    def __new__(cls, a, b, c, *args):
+    def __new__(cls, *args):
+        a, b, c, *_ = args
         cls._check_trg(a, b, c)
         return super(Triangle, cls).__new__(cls)
 

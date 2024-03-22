@@ -13,7 +13,8 @@ class Circle:
     The default methods are get_area.
     """
 
-    def __new__(cls, radius):
+    def __new__(cls, *args):
+        radius, *_ = args
         if not isinstance(radius, (int, float)):
             raise TypeError("The radius must be int or float!")
         if not (radius > 0):
