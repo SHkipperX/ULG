@@ -21,3 +21,4 @@
 
 # update #
 1.1) add Pyramid, Conus in gemetry module
+1.2) modify tests
